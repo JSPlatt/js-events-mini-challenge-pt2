@@ -142,6 +142,7 @@ const collectionUl = document.querySelector('ul#animals')
 
 
 collectionUl.addEventListener('click', function (event) {
+    const card = event.target.closest('li')
 
     if (event.target.matches('button.like-button')) {
         const likesPtag = event.target.previousElementSibling
@@ -149,20 +150,42 @@ collectionUl.addEventListener('click', function (event) {
         likesPtag.textContent = `${likes} Likes`
     }
     else if (event.target.matches('button.delete-button')) {
-        const card = event.target.closest('li')
         card.remove()
     }
 
-    else if (event.target.matches('button.toggle-update-form-button')) {
-        const card = event.target.closest('li')
+    // else if (event.target.matches('button.toggle-update-form-button')) {
+    //     const card = event.target.closest('li')
     
-    if  (card.style.display.hidden === true ){
-        card.style.visibility  
-    }
-    else {  
-        card.style.visibility = "hidden"
-    }
-        ////Just removes the card from the page, doesn't allow button to remain.  Agh!
+    // if  (card.style.display.hidden === true ){
+    //     card.style.visibility  
+    // }
+    // else {  
+    //     card.style.visibility = "hidden"
+    // }
+    //     ////Just removes the card from the page, doesn't allow button to remain.  Agh!
+    // }
+
+    else if(event.target.matches('button.toggle-update-form-button')) {
+        const form = card.querySelector('form')
+
+        if(form.style.display === 'block') {
+            form.style.display = 'none'
+        }
+        else {
+                form.style.display = 'block'
+            }
+        }
+})
+
+collectionUl.addEventListener('submit', function (event) {
+
+    if(event.target.matches('form.update-form')) {
+        event.preventDefault()
+
+        const descriptionInput = event.target[0].value
+        const li = event.target.closest('li')
+        const descriptionPtag = li.querySelector('p')
+        descriptionPtag.textContent = descriptionInput
     }
 })
 
