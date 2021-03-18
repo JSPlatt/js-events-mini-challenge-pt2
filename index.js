@@ -138,3 +138,35 @@ newSightingForm.addEventListener('submit', function (event) {
 /************************** EVENTS PART 2 JS MINI CHALLENGE ******************************/
 
 
+const collectionUl = document.querySelector('ul#animals')
+
+
+collectionUl.addEventListener('click', function (event) {
+
+    if (event.target.matches('button.like-button')) {
+        const likesPtag = event.target.previousElementSibling
+        const likes = parseInt(likesPtag.textContent) + 1
+        likesPtag.textContent = `${likes} Likes`
+    }
+    else if (event.target.matches('button.delete-button')) {
+        const card = event.target.closest('li')
+        card.remove()
+    }
+
+    else if (event.target.matches('button.toggle-update-form-button')) {
+        const card = event.target.closest('li')
+    
+    if  (card.style.display.hidden === true ){
+        card.style.visibility  
+    }
+    else {  
+        card.style.visibility = "hidden"
+    }
+        ////Just removes the card from the page, doesn't allow button to remain.  Agh!
+    }
+})
+
+
+
+
+
